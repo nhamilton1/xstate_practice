@@ -3,7 +3,13 @@ import { myMachine } from "../machine/myFirstMachine";
 import { todosMachine } from "../machine/todoAppMachine";
 
 export default function Home() {
-  const [state, send] = useMachine(todosMachine);
+  const [state, send] = useMachine(todosMachine, {
+    services: {
+      loadTodos: async () => {
+        return ["Buy milk", "Buy eggs"];
+      },
+    },
+  });
   return (
     <div>
       {JSON.stringify(state.value)}
