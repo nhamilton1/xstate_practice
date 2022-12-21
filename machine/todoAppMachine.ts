@@ -1,7 +1,7 @@
 import { createMachine, assign } from "xstate";
 
 export const todosMachine =
-  /** @xstate-layout N4IgpgJg5mDOIC5QBUD2FUAICyBDAxgBYCWAdmAHQAyquEZUmaGsAxBuRWQG6oDWlZljxEylGnQZN0qWAh6p8uAC7FUpANoAGALradiUAAdZxVesMgAHogBMAFgDsFAKz2XLgIxbHWgJx+tp4AHPYANCAAnoh+FJ4AbAmOtgDMfsEBfv6eAL45EUI4BCScEvSkjEJsYABONag1FEYANioAZg0AthSFIiXitOWVMnIKSuaauvqWJrBmaqSWNggAtJ6+FE7xjik78R7+jvER0Qi2iRSOLg7BnunBKbaO9nkFMkWinFWYZZCsAMI1MAqMCYcgAd2mSBAs3mFmhyyCzmuGSeWi0oRcWmuJzsDwotlsWXsKScWhSCRS8VeIF6xTEPRGP0GfwAImBmmBlGAocZTBMlogvM4jp4HAFgrddo5cQgAhQsuc-OsshlfC98rT3n0GYDgaoKmCwODMMoZBQAMqEVDgqQdGqdTBkIwAV2UrAAYl0naRXcpMERcBVILyYfyFoKEN4XJs3CSKQkgp40rLglpPJt0bZ0y4-EdbKEaXTPpQ9SopBDTearTa7d7nW7WBaXQAjTpmUOwgUIxApFzxVwPRzrEIk9LhKJC4cUdHeQnxeLpZPBIva+mcMsGxiVs0YS24bhSXeodjqSgKASMjAffoUTcV41VvcWg9HmTyUi8cYLfSd8Pw0BlhJGNPDcclswSeJzmxWUqXsS4Qh2Z5HAyexF1Xa8dQ3IFy0NHdq1fQ1j1YWp6kaFp2i6K9hHXUscK3I0TWPfdDyI98xnLdRf10GZ-0WHsEApYJXECfZbl8PNF2OScEGSZwKXSc59nsexgg8DCaJLCh2U5BihFPTgL0ENctJ0rkpCED8v04yY9B46EuwjATbBcFIKHiLQPMcAIkTTTzZTWZN3NJaM7huJwXA0m8GTMvSZBIuoGiaVplHtbpi1vWKLPYz9FBs7iDAcvjI2eeDvG2dwUgyTyUhSWCB18As-HcLFVLSPwoqwygsrY69SIaP4rFgZQQQoXA2m5GoAAoXPRABKVgMpijlzN6rB+qBCA-zmbtAKFFTLhc+wxQLFCHGk04njcwI+xO4J4j7FxHE62jtJWhjj0wDa-gtIwwEgTAXSMba4X4vaEFcmNgiuK6xz8R4J0ujEKFuewtFSJwHlJFI8k1Uh0DgSwlvIXidqc8GViCYStiQqkDkkgLsyhtwQg8sU3G8ldNWJgZJENKpSdByM1ieuJ0lqgtPBa9EZRkpw4jQqngiCbYXI67mTNvb5fggQXdusOw0JnIlmvsZUiR8OqZPWWxXCxJ4FzRrFPJerSymylhMAAUUSza9fJg3VlA239nTLQ0LFdxQlgvMZ3uvMzpUrxcg1zDXvvPDH2Pf2AMD0X3BU2rPETYuUzl-EsW8Ck0fFIdXdvDPtyz6trVtQ00p9P0c7BwOxTclWEmV4d41q2UPK0AkXAyVyq+V5V691eiHyYgjWMYbOirJ3Pli8YTQgXVJnlqmCZIe224P7I5czNikF84HrhgwbvI32ZxMZ2Y6HEJFwAuL4S+2OvdJwuxyToVTppTK703x9V9pAZ+AkdjU3cMXNw90vBBFlCrTMVdAF+SqrYXGOQgA */
+  /** @xstate-layout N4IgpgJg5mDOIC5QBUD2FUAICyBDAxgBYCWAdmAHQAyquEZUmaGsAxBuRWQG6oDWlZljxEylGnQZN0qWAh6p8uAC7FUpANoAGALradiUAAdZxVesMgAHogC0ARgAsFewDYAHI4BMrra68A7AEAnPZaAKwANCAAnnb2FI4AzFqO7knhAV6BGQFJ9gC+BdFCOAQknBL0pIxCbByUCgIUpSIV4rTVtTJyCkrmmroa9gZIICawZmqkljYIDkkUSY5aXsGueauurmnu0XEIwc7h3l5Ojjsp-oXFIK3lYtSdUnWsYABO76jvFEYANioAGbfAC2LRkZVElWeNWkLHkpF4-Wm+n0lgmUwsYzmti8ngoEV8mUc4XsAS07gCjn2iC8SS8FGCdPcoXs7i8WlCSXcRRKELajzqmCqkFYAGF3mAVGBMOQAO5osYYgazWkrRJ44JaMnebmkmkINauCghJJBcJErwWoK8u78h6cIUiiCsAAiYD+YGUYEVxlMKuxiFJARNrnsXkcwWC7nc9jNAQNUcZW1CIQpwXJjlt9yhlAlUtUsPlmGUMgoAGVCKg5VJge8QZgyEYAK7KVgAMVBjdILeUmCIuBqkF943901VCDC4USJ2S+TcZzjwQN7m1iS0q214Qz-k82ftuYo+ZUUmLpYwFarNdhdYbTdbrHLzYARiCzCPlePAwgMsbwukAjJNlkmjalYiDQCCW1VYfFcaM4x5W4c3aI9JRPIswDlEsy3LXBuCkc9UHYdRGkRfhBAPFDj0LRgzxwvCCJkBEkRPdRUV0dExyxUA5mSad7BOLR6W1bYfAiA0kh2E02TyKkAhZC5gn3DBISotCaNlTDsIvXD8NhQi3k+b5fgBZRb3BFSBU4ajTy0wiKwY-SmL6VjBj0DilS4mZv3ydwKG3Hx-zJTkAjg1wDSyEN8mjWDZ3ccJwmU4QHUod1PQ0oRiM4JoKMslKKDSr0XmcsjkTYoYPL9SYAx42lwkWXxfBCJkyVXPwDQcOMKFcZYp3sJk0kcAJEqQyjHkKjKZEMr4fn+IFQQs5LDwm4qMGYxRXPY0YqsxbzaoQKlnDCDYSW5LUeqSCTjXJTUSXCVJ0ijJLVPGj0iqclSPhm0VyyMMBIEwZsjA-LyJ3q6dKXCHIQOCekwIODk-NjFY6SG9JliSZ6rNSt6NMIzAvu+UUrFgZRpQoXBAW9d4AAorQ3ABKVhkNe9LGM+ozJQgEHqq-fbZxNK1HHDPF5IjcLwMNPJGTpUlsncHqEoCIpblIdA4EsFnyE43nuOsOwknpAkLQiKlgwpKkOo5CGTla+m7vqrH8qqVbZB13aJ1xE5upWSNdTxFImQkvywjSZkjjyNIbj5PLDydTpIHdmr9Z-bICWEoawyOdlLcltxnHnODovJPxhqdw8XdhIUAFFOcTzzdb2lPcW2ChsiOCMd2Fo4JPWAkwgibwBMkoby7UgtbKwwik75lPMhnRw53sBdl6SZdJbSRZ7rCMlIqtbks1G2Px-Q2i7Jwq9ay7e9lBnvW5nDRYzjDDxAicQ3DYNXwtDb-9gnqsI3I1jRztMfR4NkMJT3onpRg08G4e2-KSJGFx-BmjnOJSWPUGQj2tK4bckZ8hj1Zu9boGA75NzmHgkMaNI7hlOFESWnU-IZGFgrIaZohJwSIZwFaH0sCEy5uQiceQ-KL1JAJNIeDwz2ANM-dcgDWFtSASrAoQA */
   createMachine(
     {
       id: "Todo Machine",
@@ -48,10 +48,16 @@ export const todosMachine =
           invoke: {
             src: "loadTodos",
 
-            onDone: {
-              target: "Todos Loaded",
-              actions: "assignTodosToContext",
-            },
+            onDone: [
+              {
+                target: "Todos Loaded",
+                actions: "assignTodosToContext",
+                cond: "Has Todos",
+              },
+              {
+                target: "Creating new todo",
+              },
+            ],
 
             onError: [
               {
@@ -125,6 +131,9 @@ export const todosMachine =
       },
     },
     {
+      guards: {
+        "Has Todos": (context, event) => event.data.length > 0,
+      },
       actions: {
         assignTodosToContext: assign((context, event) => {
           return {
