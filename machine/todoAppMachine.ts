@@ -1,7 +1,7 @@
 import { createMachine, assign } from "xstate";
 
 export const todosMachine =
-  /** @xstate-layout N4IgpgJg5mDOIC5QBUD2FUAICyBDAxgBYCWAdmAHQAyquEZUmaGsAxBuRWQG6oDWlZljxEylGnQZN0qWAh6p8uAC7FUpANoAGALradiUAAdZxVesMgAHogBMAFgDsFAKz2XLgIxbHWgJx+tp4AHPYANCAAnoh+FJ4AbAmOtgDMfsEBfv6eAL45EUI4BCScEvSkjEJsYABONag1FEYANioAZg0AthSFIiXitOWVMnIKSuaauvqWJrBmaqSWNggAtJ6+FE7xjik78R7+jvER0Qi2iRSOLg7BnunBKbaO9nkFMkWinFWYZZCsAMI1MAqMCYcgAd2mSBAs3mFmhy3OwQo8T8qJSbi0uz8LgxJzsKXim3c8XiWnWwSCtlswVeIF6xTEFEBwNUFTBYHBmGUMgoAGVCKhwVIOjVOpgyEYAK7KVgAMS6EtI0uUmCIuAqkChxlMEyWiBCKTiLjRGUctxp+0c+IQJuR1Mp5xSIVsLi08TpDM+lBZKikEO5vL5uG4Uh5GHY6koCgEPXefSZvrZjAD4dQ-JDYZk8lIvHGC302phuoW+oQ8WpFB8jme8WCFZNxyiBqcFFsWi010eoVR60cnvjjM4Sf9nMDGH5guF7NF4slMtYfKlACNOmYi7C9QjEPYUvY28EzSlQn4nBim6dCc5KVkz7eMcEXAOMB9+sygX72amg5n2WnWLU9SNC07RdHGL4JsOH7JhyXJphmoZ-tmYx+uoha6DMJbwqAyxpESth+I4fiePYDxktcJE2tc+4keaXi7F4PgenSpDoHAlhev0mFzFuOGICsQTIlsOx7AchEXvx5oUCkx7OoedbOvEGLPsIQ4DJI7JVNxcKLNuqyeC4zh3A83YkQcPg2q2JEViElJJK6fgqa+TLfL8EDabx1h2PYRJaARp72MRBE+CkNrrLYrhuk8pL2J2HbMW8EFqdQgxSN8ACidQNJAHmlnpazXCibreD5ngOC4oQ2mkzhaPWhHmg47ieLk+T0oO3rvqyo5wTIuXYV5CCeBixqmoRFr1oZNo0lo0nBbujgGZSC0vK1nGJtB3XjumApCiKirzsofW6XxZwdhQgQkQ4fiEm6j62FVhFVnVNaUvYTUtYlqkdSOX5jvBwaIYwaZHWWjaRbZWixQ8wRYpZBFxIEJqpDDzXXHkeRAA */
+  /** @xstate-layout N4IgpgJg5mDOIC5QBUD2FUAICyBDAxgBYCWAdmAHQAyquEZUmaGsAxBuRWQG6oDWlZljxEylGnQZN0qWAh6p8uAC7FUpANoAGALradiUAAdZxVesMgAHogBMAFgDsFAKz2XLgIxbHWgJx+tp4AHPYANCAAnoh+FJ4AbAmOtgDMfsEBfv6eAL45EUI4BCScEvSkjEJsYABONag1FEYANioAZg0AthSFIiXitOWVMnIKSuaauvqWJrBmaqSWNggAtJ6+FE7xjik78R7+jvER0Qi2iRSOLg7BnunBKbaO9nkFMkWinFWYZZCsAMI1MAqMCYcgAd2mSBAs3mFmhy3OWgou3W9i0wXiKRcKWCJzsDwotlsWXsKScWhSCRS8VeIF6xTEPRGP0GfwAImBmmBlGAocZTBMloh7MFgpssX4XI4-PFglp4vsXPiEOtbK4XFonrZNU4aes6QzPpRAcDVBUwWBwZhlDIKABlQiocFSDo1TqYMhGACuylYADEup7SD7lJgiLgKpB+TDBQthaqtC5Nm4yVSEkFPGkVfLPJstFqtJ4XH4jrZQob3n0maaVFIITa7Y7na6g17fax7d6AEadMwx2FChGIbHxVwPRzrEJk9LhKKIaV5gveYmK9JZ4KVjAffoUWvmxgN20YB24bhSY+odjqSgKATM7fVzj7+tWxsn+1ni8yeSkXjjBZ9AHON4VAZYyWTYt0UeItFSRZV5wQGl7EuEIdmeRwMnseI-C3YRGWfIE6wtI8my-C1L1YWp6kaFp2i6B98ONPciIPS1rUvU9zwon8xjrdQgN0GYQMWYckJCVxAn2W5fFLHDjkQ5JnCpdJzn2exRQ8PCdyZTluTYoQqLqBomlaZQ3W6I1dz0nkpCEX9-34yY9CE6FB3jMSrnVNI-A0vwaTSNw8UQ7xnB8Tx0TJZ47iCbSn0oGyDJka9ODvQQqwIhKuVsi17L4iZBIMNyRITHUUgoeIFR8AIgkwgsFNONYswq8lvC8QJRScFw8nyEBSHQOBLCssRhLmIcwMQFYgnFLZ0JpA45JVKakwoYI3DuItRSpBwUjizLqEGOyRlGuFRIm1Zi2cO4HkeW53E1HwVScOJsOm4Igm2HVcN64avhZX4IBO8brDsbCKC1AI-M8EkfBSFU1Q1LUjnidEHtpH6MuYsojpYTAAFFjKBQHirGjzzrWa4Ks1bxsOh9xQhVNIwsxUtMIcdxPFyDHH32l8SLfS8gbJkGEGlFMNJSdN4kzbNEK21wi0pCKtXsdJdu5pjdz5w8BabJ0XQtCzg1DIXQJF6Hyo+hJ3snNNJZVSrkR1DIcW8XESS5t4eeY7X2PfVAuO-DBTbOkWvHFUI4N2NMkwdx4URRlxtn2Xz-M9+lMes7KkuDknToTfZnCcYIdnsOniQQxrOfFbEy8xPVfBpb6vc13Ts6DrBqIaSAQ4TK5yoyfwkyeEt0UceHkkR8tVehiHup6oA */
   createMachine(
     {
       id: "Todo Machine",
@@ -11,6 +11,9 @@ export const todosMachine =
             data: string[];
           };
           saveTodo: {
+            data: void;
+          };
+          deleteTodo: {
             data: void;
           };
         },
@@ -24,6 +27,10 @@ export const todosMachine =
             }
           | {
               type: "Submit";
+            }
+          | {
+              type: "Delete";
+              todo: string;
             },
       },
       context: {
@@ -55,9 +62,12 @@ export const todosMachine =
         "Todos Loaded": {
           on: {
             "Create new": "Creating new todo",
+            Delete: "Deleting Todo",
           },
         },
+
         "Loading Todos Errored": {},
+
         "Creating new todo": {
           states: {
             "Showing form input": {
@@ -86,6 +96,21 @@ export const todosMachine =
 
           initial: "Showing form input",
         },
+
+        "Deleting Todo": {
+          invoke: {
+            src: "deleteTodo",
+            onError: [
+              {
+                target: "Deleting todo errored",
+                actions: "assignErrorMessageToContext",
+              },
+            ],
+            onDone: "Loading Todos",
+          },
+        },
+
+        "Deleting todo errored": {},
       },
     },
     {

@@ -8,6 +8,11 @@ export interface Typegen0 {
       data: unknown;
       __tip: "See the XState TS docs to learn how to strongly type this.";
     };
+    "done.invoke.Todo Machine.Deleting Todo:invocation[0]": {
+      type: "done.invoke.Todo Machine.Deleting Todo:invocation[0]";
+      data: unknown;
+      __tip: "See the XState TS docs to learn how to strongly type this.";
+    };
     "done.invoke.Todo Machine.Loading Todos:invocation[0]": {
       type: "done.invoke.Todo Machine.Loading Todos:invocation[0]";
       data: unknown;
@@ -17,6 +22,10 @@ export interface Typegen0 {
       type: "error.platform.Todo Machine.Creating new todo.Saving todo:invocation[0]";
       data: unknown;
     };
+    "error.platform.Todo Machine.Deleting Todo:invocation[0]": {
+      type: "error.platform.Todo Machine.Deleting Todo:invocation[0]";
+      data: unknown;
+    };
     "error.platform.Todo Machine.Loading Todos:invocation[0]": {
       type: "error.platform.Todo Machine.Loading Todos:invocation[0]";
       data: unknown;
@@ -24,6 +33,7 @@ export interface Typegen0 {
     "xstate.init": { type: "xstate.init" };
   };
   invokeSrcNameMap: {
+    deleteTodo: "done.invoke.Todo Machine.Deleting Todo:invocation[0]";
     loadTodos: "done.invoke.Todo Machine.Loading Todos:invocation[0]";
     saveTodo: "done.invoke.Todo Machine.Creating new todo.Saving todo:invocation[0]";
   };
@@ -31,11 +41,12 @@ export interface Typegen0 {
     actions: never;
     delays: never;
     guards: never;
-    services: "loadTodos" | "saveTodo";
+    services: "deleteTodo" | "loadTodos" | "saveTodo";
   };
   eventsCausingActions: {
     assignErrorMessageToContext:
       | "error.platform.Todo Machine.Creating new todo.Saving todo:invocation[0]"
+      | "error.platform.Todo Machine.Deleting Todo:invocation[0]"
       | "error.platform.Todo Machine.Loading Todos:invocation[0]";
     assignFormInputToContext: "Form input changed";
     assignTodosToContext: "done.invoke.Todo Machine.Loading Todos:invocation[0]";
@@ -43,8 +54,10 @@ export interface Typegen0 {
   eventsCausingDelays: {};
   eventsCausingGuards: {};
   eventsCausingServices: {
+    deleteTodo: "Delete";
     loadTodos:
       | "done.invoke.Todo Machine.Creating new todo.Saving todo:invocation[0]"
+      | "done.invoke.Todo Machine.Deleting Todo:invocation[0]"
       | "xstate.init";
     saveTodo: "Submit";
   };
@@ -52,6 +65,8 @@ export interface Typegen0 {
     | "Creating new todo"
     | "Creating new todo.Saving todo"
     | "Creating new todo.Showing form input"
+    | "Deleting Todo"
+    | "Deleting todo errored"
     | "Loading Todos"
     | "Loading Todos Errored"
     | "Todos Loaded"
