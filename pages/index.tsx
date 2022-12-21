@@ -1,11 +1,16 @@
 import { useMachine } from "@xstate/react";
 import { todosMachine } from "../machine/todoAppMachine";
 
+const todos = new Set<string>(["Take bins out", "Do laundry"]);
+
 export default function Home() {
   const [state, send] = useMachine(todosMachine, {
     services: {
       loadTodos: async () => {
-        return ["Take bins out", "Do laundry"];
+        return Array.from(todos);
+      },
+      saveTodo: async (context, event) => {
+        todos.add(context.createNewTodoFormInput);
       },
     },
   });
@@ -26,14 +31,23 @@ export default function Home() {
           </button>
         )}
         {state.matches("Creating new todo.Showing form input") && (
-          <input
-            onChange={(e) => {
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
               send({
-                type: "Form input changed",
-                value: e.target.value,
+                type: "Submit",
               });
             }}
-          />
+          >
+            <input
+              onChange={(e) => {
+                send({
+                  type: "Form input changed",
+                  value: e.target.value,
+                });
+              }}
+            />
+          </form>
         )}
       </div>
     </div>
