@@ -30,6 +30,9 @@ export interface Typegen0 {
       type: "error.platform.Todo Machine.Loading Todos:invocation[0]";
       data: unknown;
     };
+    "xstate.after(2500)#Todo Machine.Deleting todo errored": {
+      type: "xstate.after(2500)#Todo Machine.Deleting todo errored";
+    };
     "xstate.init": { type: "xstate.init" };
   };
   invokeSrcNameMap: {
